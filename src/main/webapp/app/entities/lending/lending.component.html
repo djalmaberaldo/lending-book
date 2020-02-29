@@ -22,7 +22,6 @@
                     <th scope="col"  jhiSortBy="lendDate"><span>Lend Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="isActive"><span>Is Active</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="bookId"><span>Book</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="bookId"><span>Book</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -31,11 +30,6 @@
                     <td><a [routerLink]="['/lending', lending.id, 'view']">{{ lending.id }}</a></td>
                     <td>{{ lending.lendDate | date:'medium' }}</td>
                     <td>{{ lending.isActive }}</td>
-                    <td>
-                        <div *ngIf="lending.bookId">
-                            <a [routerLink]="['/book', lending.bookId , 'view']" >{{ lending.bookId }}</a>
-                        </div>
-                    </td>
                     <td>
                         <div *ngIf="lending.bookId">
                             <a [routerLink]="['/book', lending.bookId , 'view']" >{{ lending.bookId }}</a>

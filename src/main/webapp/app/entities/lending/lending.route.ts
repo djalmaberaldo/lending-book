@@ -36,7 +36,7 @@ export class LendingResolve implements Resolve<ILending> {
 
 export const lendingRoute: Routes = [
     {
-        path: '',
+        path: 'lending',
         component: LendingComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -49,7 +49,7 @@ export const lendingRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: ':id/view',
+        path: 'lending/:id/view',
         component: LendingDetailComponent,
         resolve: {
             lending: LendingResolve
@@ -61,7 +61,7 @@ export const lendingRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'new',
+        path: 'lending/new',
         component: LendingUpdateComponent,
         resolve: {
             lending: LendingResolve
@@ -73,7 +73,7 @@ export const lendingRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: ':id/edit',
+        path: 'lending/:id/edit',
         component: LendingUpdateComponent,
         resolve: {
             lending: LendingResolve

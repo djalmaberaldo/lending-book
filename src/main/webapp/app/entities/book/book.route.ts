@@ -49,7 +49,7 @@ export const bookRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: ':id/view',
+        path: 'book/:id/view',
         component: BookDetailComponent,
         resolve: {
             book: BookResolve
@@ -73,7 +73,7 @@ export const bookRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: ':id/edit',
+        path: 'book/:id/edit',
         component: BookUpdateComponent,
         resolve: {
             book: BookResolve
