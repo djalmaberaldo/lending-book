@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
-
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { Audit } from './audit.model';
 import { AuditsService } from './audits.service';
@@ -28,8 +26,6 @@ export class AuditsComponent implements OnInit, OnDestroy {
 
     constructor(
         private auditsService: AuditsService,
-        private alertService: JhiAlertService,
-        private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private datePipe: DatePipe,
         private router: Router
@@ -116,13 +112,12 @@ export class AuditsComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
-        this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         this.audits = data;
     }
 
     private onError(error) {
-        this.alertService.error(error.error, error.message, null);
+        console.log(error);
     }
 }

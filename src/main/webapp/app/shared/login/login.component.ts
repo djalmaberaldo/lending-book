@@ -1,10 +1,10 @@
-import { Component, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
+import { JhiEventManager } from '../util/event-manager';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -22,7 +22,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private loginService: LoginService,
         private stateStorageService: StateStorageService,
         private elementRef: ElementRef,
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private router: Router,
         public activeModal: NgbActiveModal
     ) {
@@ -30,7 +30,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
+        setTimeout(() => this.renderer.selectRootElement(this.elementRef.nativeElement.querySelector('#username'), true), 0);
     }
 
     cancel() {

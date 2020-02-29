@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 
 import { AccountService, User, UserService } from 'app/core';
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
 import { UserMgmtUpdateComponent } from './user-management-update.component';
+import { JhiResolvePagingParams } from 'app/shared/util/paging-params.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserResolve implements CanActivate {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private route: ActivatedRoute,
         private elementRef: ElementRef,
-        private renderer: Renderer
+        private renderer: Renderer2
     ) {}
 
     ngOnInit() {
@@ -37,7 +37,7 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         if (this.elementRef.nativeElement.querySelector('#password') != null) {
-            this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#password'), 'focus', []);
+            this.renderer.selectRootElement(this.elementRef.nativeElement.querySelector('#password'), true);
         }
     }
 

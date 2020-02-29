@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 import { EMAIL_NOT_FOUND_TYPE } from 'app/shared';
 import { PasswordResetInitService } from './password-reset-init.service';
 
@@ -12,14 +12,14 @@ export class PasswordResetInitComponent implements OnInit, AfterViewInit {
     resetAccount: any;
     success: string;
 
-    constructor(private passwordResetInitService: PasswordResetInitService, private elementRef: ElementRef, private renderer: Renderer) {}
+    constructor(private passwordResetInitService: PasswordResetInitService, private elementRef: ElementRef, private renderer: Renderer2) {}
 
     ngOnInit() {
         this.resetAccount = {};
     }
 
     ngAfterViewInit() {
-        this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#email'), 'focus', []);
+        this.renderer.selectRootElement(this.elementRef.nativeElement.querySelector('#email'), true);
     }
 
     requestReset() {

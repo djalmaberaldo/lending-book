@@ -5,12 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
-import { NgJhipsterModule } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { LendingbookSharedModule } from 'app/shared';
 import { LendingbookCoreModule } from 'app/core';
 import { LendingbookAppRoutingModule } from './app-routing.module';
@@ -26,11 +24,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         BrowserModule,
         LendingbookAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
-        NgJhipsterModule.forRoot({
-            // set below to true to make alerts look like toast
-            alertAsToast: false,
-            alertTimeout: 5000
-        }),
         LendingbookSharedModule.forRoot(),
         LendingbookCoreModule,
         LendingbookHomeModule,
@@ -53,11 +46,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorHandlerInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: NotificationInterceptor,
             multi: true
         }
     ],

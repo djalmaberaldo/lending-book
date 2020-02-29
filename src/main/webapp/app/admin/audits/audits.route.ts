@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Route } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 
 import { AuditsComponent } from './audits.component';
+import { JhiResolvePagingParams } from 'app/shared/util/paging-params.service';
 
 export const auditsRoute: Route = {
     path: 'audits',

@@ -3,11 +3,11 @@ import { HttpResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { AccountService, UserService, User } from 'app/core';
 import { UserMgmtDeleteDialogComponent } from 'app/admin';
+import { JhiEventManager } from 'app/shared/util/event-manager';
 
 @Component({
     selector: 'jhi-user-mgmt',
@@ -30,9 +30,7 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
 
     constructor(
         private userService: UserService,
-        private alertService: JhiAlertService,
         private accountService: AccountService,
-        private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private eventManager: JhiEventManager,
@@ -134,13 +132,12 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
-        this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         this.users = data;
     }
 
     private onError(error) {
-        this.alertService.error(error.error, error.message, null);
+        console.log(error);
     }
 }
