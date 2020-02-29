@@ -1,0 +1,32 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "org.dbatista.lendingbook"
+        },
+        "jhipsterVersion": "5.7.2",
+        "applicationType": "monolith",
+        "baseName": "lendingbook",
+        "packageName": "org.dbatista.lendingbook",
+        "packageFolder": "org/dbatista/lendingbook",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "no",
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "ODg5YTYxZjdiMzU3Nzg5ZjE5YzdkNmU3YzJiZTc0M2MwZWExY2UzMDY2ZjZmYjdkNjUxMTY0ZjQ5NzUxNDJiYTI5NDhmNWE0NzE0ZGZhNjJhMDExNTA5NDA1MTY4YzkzNjVlZGFlYzNlMzBhZjNlZGRjZGRlZDUzZWUzZWEzMjQ=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}
