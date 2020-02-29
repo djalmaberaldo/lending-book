@@ -1,0 +1,40 @@
+{
+    "name": "Lending",
+    "fields": [
+        {
+            "fieldName": "lendDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "book",
+            "otherEntityRelationshipName": "lending",
+            "relationshipName": "book",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "book",
+            "otherEntityRelationshipName": "lendings",
+            "relationshipName": "book",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200229213700",
+    "entityTableName": "lending",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

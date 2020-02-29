@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lending">
+            <h2><span>Lending</span> {{ lending.id }}</h2>
+
+            <hr>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Lend Date</span></dt>
+                <dd>
+                    <span>{{ lending.lendDate }}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{ lending.isActive }}</span>
+                </dd>
+                <dt><span>Book</span></dt>
+                <dd>
+                    <div *ngIf="lending.bookId">
+                        <a [routerLink]="['/book', lending.bookId, 'view']">{{ lending.bookId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Book</span></dt>
+                <dd>
+                    <div *ngIf="lending.bookId">
+                        <a [routerLink]="['/book', lending.bookId, 'view']">{{ lending.bookId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lending', lending.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

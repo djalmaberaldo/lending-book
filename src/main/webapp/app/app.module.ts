@@ -18,6 +18,7 @@ import { LendingbookEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -29,7 +30,9 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         LendingbookHomeModule,
         LendingbookAccountModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        LendingbookEntityModule
+        LendingbookEntityModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
     providers: [

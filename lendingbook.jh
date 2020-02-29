@@ -1,0 +1,34 @@
+entity Book {
+	title String,
+    description String,
+    author String,
+    yearOfPublication Integer
+}
+
+
+entity Lending {
+	lendDate ZonedDateTime,
+    isActive Boolean
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Book{lendings} to Lending
+}
+
+relationship OneToOne {
+	Lending{book} to Book
+}
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+dto * with mapstruct
+
+paginate all with pagination
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
