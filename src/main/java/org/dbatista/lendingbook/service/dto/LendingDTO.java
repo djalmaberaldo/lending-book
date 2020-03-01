@@ -17,6 +17,8 @@ public class LendingDTO implements Serializable {
 
     private Long bookId;
 
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -49,34 +51,38 @@ public class LendingDTO implements Serializable {
         this.bookId = bookId;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (o == this)
             return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof LendingDTO)) {
             return false;
         }
-
         LendingDTO lendingDTO = (LendingDTO) o;
-        if (lendingDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), lendingDTO.getId());
+        return Objects.equals(id, lendingDTO.id) && Objects.equals(lendDate, lendingDTO.lendDate) && Objects.equals(isActive, lendingDTO.isActive) && Objects.equals(bookId, lendingDTO.bookId) && Objects.equals(userId, lendingDTO.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return Objects.hash(id, lendDate, isActive, bookId, userId);
     }
 
     @Override
     public String toString() {
-        return "LendingDTO{" +
-            "id=" + getId() +
+        return "{" +
+            " id='" + getId() + "'" +
             ", lendDate='" + getLendDate() + "'" +
             ", isActive='" + isIsActive() + "'" +
-            ", bookId=" + getBookId() +
+            ", bookId='" + getBookId() + "'" +
+            ", userId='" + getUserId() + "'" +
             "}";
     }
 }

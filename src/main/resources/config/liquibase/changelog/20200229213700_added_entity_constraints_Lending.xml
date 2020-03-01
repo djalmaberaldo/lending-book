@@ -13,6 +13,13 @@
                                  constraintName="fk_lending_book_id"
                                  referencedColumnNames="id"
                                  referencedTableName="book"/>
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="lending"
+                                 constraintName="fk_lending_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
 
     </changeSet>
 </databaseChangeLog>

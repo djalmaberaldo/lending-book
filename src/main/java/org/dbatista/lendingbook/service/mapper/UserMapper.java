@@ -55,7 +55,6 @@ public class UserMapper {
         }
     }
 
-
     private Set<Authority> authoritiesFromStrings(Set<String> authoritiesAsString) {
         Set<Authority> authorities = new HashSet<>();
 

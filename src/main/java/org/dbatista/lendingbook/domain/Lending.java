@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * A Lending.
@@ -27,6 +28,10 @@ public class Lending implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Book book;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -76,30 +81,39 @@ public class Lending implements Serializable {
         this.book = book;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (o == this)
             return true;
-        }
         if (!(o instanceof Lending)) {
             return false;
         }
-        return id != null && id.equals(((Lending) o).id);
+        Lending lending = (Lending) o;
+        return Objects.equals(id, lending.id) && Objects.equals(lendDate, lending.lendDate) && Objects.equals(isActive, lending.isActive) && Objects.equals(book, lending.book) && Objects.equals(user, lending.user);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(id, lendDate, isActive, book, user);
     }
 
     @Override
     public String toString() {
-        return "Lending{" +
-            "id=" + getId() +
+        return "{" +
+            " id='" + getId() + "'" +
             ", lendDate='" + getLendDate() + "'" +
             ", isActive='" + isIsActive() + "'" +
+            ", book='" + getBook() + "'" +
+            ", user='" + getUser() + "'" +
             "}";
     }
+
 }

@@ -9,9 +9,8 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Book} and its DTO {@link BookDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface BookMapper extends EntityMapper<BookDTO, Book> {
-
 
     @Mapping(target = "lendings", ignore = true)
     Book toEntity(BookDTO bookDTO);

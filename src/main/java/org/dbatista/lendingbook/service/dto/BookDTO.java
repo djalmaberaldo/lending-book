@@ -18,7 +18,6 @@ public class BookDTO implements Serializable {
 
     private Integer yearOfPublication;
 
-
     public Long getId() {
         return id;
     }
@@ -61,33 +60,18 @@ public class BookDTO implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (o == this)
             return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof BookDTO)) {
             return false;
         }
-
         BookDTO bookDTO = (BookDTO) o;
-        if (bookDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), bookDTO.getId());
+        return Objects.equals(id, bookDTO.id) && Objects.equals(title, bookDTO.title) && Objects.equals(description, bookDTO.description) && Objects.equals(author, bookDTO.author) && Objects.equals(yearOfPublication, bookDTO.yearOfPublication);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return Objects.hash(id, title, description, author, yearOfPublication);
     }
-
-    @Override
-    public String toString() {
-        return "BookDTO{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", author='" + getAuthor() + "'" +
-            ", yearOfPublication=" + getYearOfPublication() +
-            "}";
-    }
+   
 }

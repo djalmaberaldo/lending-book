@@ -1,10 +1,10 @@
 package org.dbatista.lendingbook.domain;
 
-
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -35,9 +35,8 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "book")
     private Set<Lending> lendings = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -45,12 +44,7 @@ public class Book implements Serializable {
     }
 
     public String getTitle() {
-        return title;
-    }
-
-    public Book title(String title) {
-        this.title = title;
-        return this;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -58,12 +52,7 @@ public class Book implements Serializable {
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public Book description(String description) {
-        this.description = description;
-        return this;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -71,12 +60,7 @@ public class Book implements Serializable {
     }
 
     public String getAuthor() {
-        return author;
-    }
-
-    public Book author(String author) {
-        this.author = author;
-        return this;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -84,12 +68,7 @@ public class Book implements Serializable {
     }
 
     public Integer getYearOfPublication() {
-        return yearOfPublication;
-    }
-
-    public Book yearOfPublication(Integer yearOfPublication) {
-        this.yearOfPublication = yearOfPublication;
-        return this;
+        return this.yearOfPublication;
     }
 
     public void setYearOfPublication(Integer yearOfPublication) {
@@ -97,7 +76,36 @@ public class Book implements Serializable {
     }
 
     public Set<Lending> getLendings() {
-        return lendings;
+        return this.lendings;
+    }
+
+    public void setLendings(Set<Lending> lendings) {
+        this.lendings = lendings;
+    }
+
+    public Book id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Book title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public Book description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Book author(String author) {
+        this.author = author;
+        return this;
+    }
+
+    public Book yearOfPublication(Integer yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
+        return this;
     }
 
     public Book lendings(Set<Lending> lendings) {
@@ -105,47 +113,33 @@ public class Book implements Serializable {
         return this;
     }
 
-    public Book addLendings(Lending lending) {
-        this.lendings.add(lending);
-        lending.setBook(this);
-        return this;
-    }
-
-    public Book removeLendings(Lending lending) {
-        this.lendings.remove(lending);
-        lending.setBook(null);
-        return this;
-    }
-
-    public void setLendings(Set<Lending> lendings) {
-        this.lendings = lendings;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (o == this)
             return true;
-        }
         if (!(o instanceof Book)) {
             return false;
         }
-        return id != null && id.equals(((Book) o).id);
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(description, book.description) && Objects.equals(author, book.author) && Objects.equals(yearOfPublication, book.yearOfPublication) && Objects.equals(lendings, book.lendings);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(id, title, description, author, yearOfPublication, lendings);
     }
 
     @Override
     public String toString() {
-        return "Book{" +
-            "id=" + getId() +
+        return "{" +
+            " id='" + getId() + "'" +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
             ", author='" + getAuthor() + "'" +
-            ", yearOfPublication=" + getYearOfPublication() +
+            ", yearOfPublication='" + getYearOfPublication() + "'" +
+            ", lendings='" + getLendings() + "'" +
             "}";
     }
+
+
 }
