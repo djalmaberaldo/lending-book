@@ -19,6 +19,10 @@ public class LendingDTO implements Serializable {
 
     private Long userId;
 
+    private String bookTitle;
+
+    private String userName;
+
     public Long getId() {
         return id;
     }
@@ -59,6 +63,22 @@ public class LendingDTO implements Serializable {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -67,13 +87,14 @@ public class LendingDTO implements Serializable {
             return false;
         }
         LendingDTO lendingDTO = (LendingDTO) o;
-        return Objects.equals(id, lendingDTO.id) && Objects.equals(lendDate, lendingDTO.lendDate) && Objects.equals(isActive, lendingDTO.isActive) && Objects.equals(bookId, lendingDTO.bookId) && Objects.equals(userId, lendingDTO.userId);
+        return Objects.equals(id, lendingDTO.id) && Objects.equals(lendDate, lendingDTO.lendDate) && Objects.equals(isActive, lendingDTO.isActive) && Objects.equals(bookId, lendingDTO.bookId) && Objects.equals(userId, lendingDTO.userId) && Objects.equals(bookTitle, lendingDTO.bookTitle) && Objects.equals(userName, lendingDTO.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lendDate, isActive, bookId, userId);
+        return Objects.hash(id, lendDate, isActive, bookId, userId, bookTitle, userName);
     }
+
 
     @Override
     public String toString() {
@@ -83,6 +104,10 @@ public class LendingDTO implements Serializable {
             ", isActive='" + isIsActive() + "'" +
             ", bookId='" + getBookId() + "'" +
             ", userId='" + getUserId() + "'" +
+            ", bookTitle='" + getBookTitle() + "'" +
+            ", userName='" + getUserName() + "'" +
             "}";
     }
+
+
 }

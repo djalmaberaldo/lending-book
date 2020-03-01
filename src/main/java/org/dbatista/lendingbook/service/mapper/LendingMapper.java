@@ -13,7 +13,9 @@ import org.mapstruct.*;
 public interface LendingMapper extends EntityMapper<LendingDTO, Lending> {
 
     @Mapping(source = "book.id", target = "bookId")
+    @Mapping(source = "book.title", target = "bookTitle")
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.firstName", target = "userName")
     LendingDTO toDto(Lending lending);
 
     @Mapping(source = "bookId", target = "book")

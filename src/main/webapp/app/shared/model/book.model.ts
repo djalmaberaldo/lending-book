@@ -7,6 +7,7 @@ export interface IBook {
     author?: string;
     yearOfPublication?: number;
     lendings?: ILending[];
+    activeLending?: boolean;
 }
 
 export class Book implements IBook {
@@ -16,6 +17,7 @@ export class Book implements IBook {
         public description?: string,
         public author?: string,
         public yearOfPublication?: number,
-        public lendings?: ILending[]
+        public lendings?: ILending[],
+        public activeLending?: boolean
     ) {}
 }

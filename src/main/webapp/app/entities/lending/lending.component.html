@@ -18,11 +18,11 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col"  ><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  ><span>Lend Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  ><span>Is Active</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  ><span>Book</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  ><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  ><span>ID</span> </th>
+                    <th scope="col"  ><span>Lend Date</span> </th>
+                    <th scope="col"  ><span>Is Active</span> </th>
+                    <th scope="col"  ><span>Book</span> </th>
+                    <th scope="col"  ><span>Posession</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,22 +33,16 @@
                     <td>{{ lending.isActive }}</td>
                     <td>
                         <div *ngIf="lending.bookId">
-                          {{ lending.bookId }}
+                          {{ lending.bookTitle }}
                         </div>
                     </td>
                     <td>
                         <div *ngIf="lending.userId">
-                          {{ lending.userId }}
+                          {{ lending.userName }}
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/lending', lending.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline">View</span>
-                            </button>
 
                             <button type="submit"
                                     [routerLink]="['/lending', lending.id, 'edit']"
@@ -57,7 +51,7 @@
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(lending)"
+                            <button [disabled]="lending.isActive" type="submit" (click)="delete(lending)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>
