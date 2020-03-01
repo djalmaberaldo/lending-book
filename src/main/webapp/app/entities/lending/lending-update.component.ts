@@ -12,6 +12,7 @@ import { ILending, Lending } from 'app/shared/model/lending.model';
 import { LendingService } from './lending.service';
 import { IBook } from 'app/shared/model/book.model';
 import { BookService } from 'app/entities/book/book.service';
+import { IUser, UserService } from 'app/core';
 
 @Component({
     selector: 'jhi-lending-update',
@@ -20,17 +21,20 @@ import { BookService } from 'app/entities/book/book.service';
 export class LendingUpdateComponent implements OnInit {
     isSaving = false;
     books: IBook[] = [];
+    users: IUser[] = [];
 
     editForm = this.fb.group({
         id: [],
         lendDate: [],
         isActive: [],
-        bookId: []
+        bookId: [],
+        userId: []
     });
 
     constructor(
         protected lendingService: LendingService,
         protected bookService: BookService,
+        protected userService: UserService,
         protected activatedRoute: ActivatedRoute,
         private fb: FormBuilder
     ) {}
@@ -67,6 +71,28 @@ export class LendingUpdateComponent implements OnInit {
                 });
 
             this.bookService.query().subscribe((res: HttpResponse<IBook[]>) => (this.books = res.body || []));
+
+            this.userService
+                .query()
+                .pipe(
+                    map((res: HttpResponse<IUser[]>) => {
+                        return res.body || [];
+                    })
+                )
+                .subscribe((resBody: IUser[]) => {
+                    if (!lending.userId) {
+                        this.users = resBody;
+                    } else {
+                        this.userService
+                            .find(lending.userId)
+                            .pipe(
+                                map((subRes: HttpResponse<IUser>) => {
+                                    return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                                })
+                            )
+                            .subscribe((concatRes: IUser[]) => (this.users = concatRes));
+                    }
+                });
         });
     }
 
@@ -75,7 +101,8 @@ export class LendingUpdateComponent implements OnInit {
             id: lending.id,
             lendDate: lending.lendDate ? lending.lendDate.format(DATE_TIME_FORMAT) : null,
             isActive: lending.isActive,
-            bookId: lending.bookId
+            bookId: lending.bookId,
+            userId: lending.userId
         });
     }
 
@@ -99,7 +126,8 @@ export class LendingUpdateComponent implements OnInit {
             id: this.editForm.get(['id'])!.value,
             lendDate: this.editForm.get(['lendDate'])!.value ? moment(this.editForm.get(['lendDate'])!.value, DATE_TIME_FORMAT) : undefined,
             isActive: this.editForm.get(['isActive'])!.value,
-            bookId: this.editForm.get(['bookId'])!.value
+            bookId: this.editForm.get(['bookId'])!.value,
+            userId: this.editForm.get(['userId'])!.value
         };
     }
 
@@ -117,6 +145,10 @@ export class LendingUpdateComponent implements OnInit {
     }
 
     trackById(index: number, item: IBook): any {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: IUser): any {
         return item.id;
     }
 }

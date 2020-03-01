@@ -5,10 +5,11 @@ export interface ILending {
     lendDate?: Moment;
     isActive?: boolean;
     bookId?: number;
+    userId?: number;
 }
 
 export class Lending implements ILending {
-    constructor(public id?: number, public lendDate?: Moment, public isActive?: boolean, public bookId?: number) {
+    constructor(public id?: number, public lendDate?: Moment, public isActive?: boolean, public bookId?: number, public userId?: number) {
         this.isActive = this.isActive || false;
     }
 }
