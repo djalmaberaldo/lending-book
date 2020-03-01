@@ -1,6 +1,8 @@
 package org.dbatista.lendingbook.web.rest;
 
 import org.dbatista.lendingbook.service.BookService;
+import org.dbatista.lendingbook.service.LendingService;
+import org.dbatista.lendingbook.service.UserService;
 import org.dbatista.lendingbook.web.rest.errors.BadRequestAlertException;
 import org.dbatista.lendingbook.service.dto.BookDTO;
 import org.dbatista.lendingbook.web.rest.util.HeaderUtil;
@@ -8,6 +10,7 @@ import org.dbatista.lendingbook.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,11 +37,14 @@ public class BookResource {
     @Value("LendingBookApp")
     private String applicationName;
 
-    private final BookService bookService;
+    @Autowired
+    private BookService bookService;
 
-    public BookResource(BookService bookService) {
-        this.bookService = bookService;
-    }
+    @Autowired
+    private LendingService lendingService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * {@code POST  /books} : Create a new book.
@@ -90,6 +96,21 @@ public class BookResource {
     public ResponseEntity<List<BookDTO>> getAllBooks(Pageable pageable) {
         log.debug("REST request to get a page of Books");
         Page<BookDTO> page = bookService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, " api/books");
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+
+    /**
+     * {@code GET  /books} : get all the books.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of books in body.
+     */
+    @GetMapping("/books/user")
+    public ResponseEntity<List<BookDTO>> getAllBooksByUser(Pageable pageable) {
+        log.debug("REST request to get a page of Books");
+        Page<BookDTO> page = lendingService.findAllWithUser(pageable, this.userService.getUserWithAuthorities().get().getId());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, " api/books");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -35,4 +35,9 @@ export class BookService {
     delete(id: number): Observable<HttpResponse<{}>> {
         return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
+
+    findBorrowedBooks(req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IBook[]>(this.resourceUrl + `/user`, { params: options, observe: 'response' });
+    }
 }

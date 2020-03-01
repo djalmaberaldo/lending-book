@@ -1,5 +1,6 @@
 package org.dbatista.lendingbook.service;
 
+import org.dbatista.lendingbook.service.dto.BookDTO;
 import org.dbatista.lendingbook.service.dto.LendingDTO;
 
 import org.springframework.data.domain.Page;
@@ -42,4 +43,6 @@ public interface LendingService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	Page<BookDTO> findAllWithUser(Pageable pageable, Long userId);
 }
