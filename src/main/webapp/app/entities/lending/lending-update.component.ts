@@ -22,6 +22,7 @@ export class LendingUpdateComponent implements OnInit {
     isSaving = false;
     books: IBook[] = [];
     users: IUser[] = [];
+    currentLending = new Lending();
 
     editForm = this.fb.group({
         id: [],
@@ -44,6 +45,8 @@ export class LendingUpdateComponent implements OnInit {
             if (!lending.id) {
                 const today = moment().startOf('day');
                 lending.lendDate = today;
+            } else {
+                this.currentLending = lending;
             }
 
             this.updateForm(lending);

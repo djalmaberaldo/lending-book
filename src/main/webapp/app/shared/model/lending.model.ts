@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import moment = require('moment');
 
 export interface ILending {
     id?: number;
@@ -20,6 +21,8 @@ export class Lending implements ILending {
         public bookTitle?: string,
         public userName?: string
     ) {
+        this.id = this.id || null;
         this.isActive = this.isActive || false;
+        this.lendDate = this.lendDate || moment();
     }
 }

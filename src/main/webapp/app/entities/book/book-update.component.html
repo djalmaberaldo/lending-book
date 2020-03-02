@@ -1,14 +1,9 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-book-heading">Create or edit a Book</h2>
-
+            <h2 *ngIf="!editForm.get('id')!.value" id="jhi-book-heading">Create a book</h2>
+            <h2 *ngIf="editForm.get('id')!.value" id="jhi-book-heading">Edit a book</h2>
             <div>
-
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_title">Title</label>

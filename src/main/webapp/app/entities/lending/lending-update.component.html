@@ -1,20 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-lending-heading">Create or edit a Lending</h2>
-
+            <h2 *ngIf="!editForm.get('id')!.value" id="jhi-lending-heading">Create a Lending</h2>
+            <h2 *ngIf="editForm.get('id')!.value" id="jhi-lending-heading">Edit a Lending</h2>
             <div>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
                 <div class="form-group">
-                    <label class="form-control-label" for="field_lendDate">Lend Date</label>
-                    <div class="d-flex">
-                        <input id="field_lendDate" type="datetime-local" class="form-control" name="lendDate" formControlName="lendDate" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
+                    <label class="form-control-label" for="field_lendDate"><b>Lend Date</b></label>
+                    <div>{{currentLending.lendDate | date:'dd/MM/yyyy'}}</div>
                 </div>
 
                 <div class="form-group">
@@ -23,21 +16,22 @@
                            formControlName="isActive"/>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" for="field_book">Book</label>
-                    <select class="form-control" id="field_book" name="book" formControlName="bookId">
+                <div  class="form-group">
+                    <label class="form-control-label" for="field_book"><b>Book</b></label>
+                    <select *ngIf="currentLending.id === null" class="form-control" id="field_book" name="book" formControlName="bookId">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="bookOption.id" *ngFor="let bookOption of books; trackBy: trackById">{{ bookOption.title }}</option>
                     </select>
+                    <div *ngIf="currentLending.id != null">{{currentLending.bookTitle}}</div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_user">user</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="userId">
+                <div   class="form-group">
+                    <label class="form-control-label" for="field_user"><b>User</b></label>
+                    <select *ngIf="currentLending.id == null" class="form-control" id="field_user" name="user" formControlName="userId">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{ userOption.firstName }}</option>
                     </select>
+                    <div *ngIf="currentLending.id != null">{{currentLending.userName}}</div>
                 </div>
-
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
