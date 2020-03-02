@@ -13,8 +13,6 @@ public class LendingDTO implements Serializable {
 
     private ZonedDateTime lendDate;
 
-    private Boolean isActive;
-
     private Long bookId;
 
     private Long userId;
@@ -24,7 +22,7 @@ public class LendingDTO implements Serializable {
     private String userName;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -32,23 +30,15 @@ public class LendingDTO implements Serializable {
     }
 
     public ZonedDateTime getLendDate() {
-        return lendDate;
+        return this.lendDate;
     }
 
     public void setLendDate(ZonedDateTime lendDate) {
         this.lendDate = lendDate;
     }
 
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
     public Long getBookId() {
-        return bookId;
+        return this.bookId;
     }
 
     public void setBookId(Long bookId) {
@@ -56,27 +46,57 @@ public class LendingDTO implements Serializable {
     }
 
     public Long getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
+    public String getBookTitle() {
+        return this.bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public LendingDTO id(Long id) {
+        this.id = id;
+        return this;
     }
 
-    public void setBookTitle(String bookTitle) {
+    public LendingDTO lendDate(ZonedDateTime lendDate) {
+        this.lendDate = lendDate;
+        return this;
+    }
+
+    public LendingDTO bookId(Long bookId) {
+        this.bookId = bookId;
+        return this;
+    }
+
+    public LendingDTO userId(Long userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public LendingDTO bookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
+        return this;
+    }
+
+    public LendingDTO userName(String userName) {
+        this.userName = userName;
+        return this;
     }
 
     @Override
@@ -87,21 +107,19 @@ public class LendingDTO implements Serializable {
             return false;
         }
         LendingDTO lendingDTO = (LendingDTO) o;
-        return Objects.equals(id, lendingDTO.id) && Objects.equals(lendDate, lendingDTO.lendDate) && Objects.equals(isActive, lendingDTO.isActive) && Objects.equals(bookId, lendingDTO.bookId) && Objects.equals(userId, lendingDTO.userId) && Objects.equals(bookTitle, lendingDTO.bookTitle) && Objects.equals(userName, lendingDTO.userName);
+        return Objects.equals(id, lendingDTO.id) && Objects.equals(lendDate, lendingDTO.lendDate) && Objects.equals(bookId, lendingDTO.bookId) && Objects.equals(userId, lendingDTO.userId) && Objects.equals(bookTitle, lendingDTO.bookTitle) && Objects.equals(userName, lendingDTO.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lendDate, isActive, bookId, userId, bookTitle, userName);
+        return Objects.hash(id, lendDate, bookId, userId, bookTitle, userName);
     }
-
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", lendDate='" + getLendDate() + "'" +
-            ", isActive='" + isIsActive() + "'" +
             ", bookId='" + getBookId() + "'" +
             ", userId='" + getUserId() + "'" +
             ", bookTitle='" + getBookTitle() + "'" +
@@ -109,5 +127,5 @@ public class LendingDTO implements Serializable {
             "}";
     }
 
-
+   
 }

@@ -18,8 +18,10 @@ public class BookDTO implements Serializable {
 
     private Integer yearOfPublication;
 
+    private Long ownerId;
+
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -27,7 +29,7 @@ public class BookDTO implements Serializable {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -35,7 +37,7 @@ public class BookDTO implements Serializable {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -43,7 +45,7 @@ public class BookDTO implements Serializable {
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -51,11 +53,49 @@ public class BookDTO implements Serializable {
     }
 
     public Integer getYearOfPublication() {
-        return yearOfPublication;
+        return this.yearOfPublication;
     }
 
     public void setYearOfPublication(Integer yearOfPublication) {
         this.yearOfPublication = yearOfPublication;
+    }
+
+    public Long getOwnerId() {
+        return this.ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public BookDTO id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public BookDTO title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public BookDTO description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public BookDTO author(String author) {
+        this.author = author;
+        return this;
+    }
+
+    public BookDTO yearOfPublication(Integer yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
+        return this;
+    }
+
+    public BookDTO ownerId(Long ownerId) {
+        this.ownerId = ownerId;
+        return this;
     }
 
     @Override
@@ -66,12 +106,25 @@ public class BookDTO implements Serializable {
             return false;
         }
         BookDTO bookDTO = (BookDTO) o;
-        return Objects.equals(id, bookDTO.id) && Objects.equals(title, bookDTO.title) && Objects.equals(description, bookDTO.description) && Objects.equals(author, bookDTO.author) && Objects.equals(yearOfPublication, bookDTO.yearOfPublication);
+        return Objects.equals(id, bookDTO.id) && Objects.equals(title, bookDTO.title) && Objects.equals(description, bookDTO.description) && Objects.equals(author, bookDTO.author) && Objects.equals(yearOfPublication, bookDTO.yearOfPublication) && Objects.equals(ownerId, bookDTO.ownerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, author, yearOfPublication);
+        return Objects.hash(id, title, description, author, yearOfPublication, ownerId);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", author='" + getAuthor() + "'" +
+            ", yearOfPublication='" + getYearOfPublication() + "'" +
+            ", ownerId='" + getOwnerId() + "'" +
+            "}";
+    }
+   
    
 }

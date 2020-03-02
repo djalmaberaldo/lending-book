@@ -22,9 +22,6 @@ public class Lending implements Serializable {
     @Column(name = "lend_date")
     private ZonedDateTime lendDate;
 
-    @Column(name = "is_active")
-    private Boolean isActive;
-
     @OneToOne
     @JoinColumn(unique = true)
     private Book book;
@@ -33,9 +30,19 @@ public class Lending implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+
+    public Lending() {
+    }
+
+    public Lending(Long id, ZonedDateTime lendDate, Book book, User user) {
+        this.id = id;
+        this.lendDate = lendDate;
+        this.book = book;
+        this.user = user;
+    }
+
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -43,38 +50,15 @@ public class Lending implements Serializable {
     }
 
     public ZonedDateTime getLendDate() {
-        return lendDate;
-    }
-
-    public Lending lendDate(ZonedDateTime lendDate) {
-        this.lendDate = lendDate;
-        return this;
+        return this.lendDate;
     }
 
     public void setLendDate(ZonedDateTime lendDate) {
         this.lendDate = lendDate;
     }
 
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public Lending isActive(Boolean isActive) {
-        this.isActive = isActive;
-        return this;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
     public Book getBook() {
-        return book;
-    }
-
-    public Lending book(Book book) {
-        this.book = book;
-        return this;
+        return this.book;
     }
 
     public void setBook(Book book) {
@@ -89,6 +73,26 @@ public class Lending implements Serializable {
         this.user = user;
     }
 
+    public Lending id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Lending lendDate(ZonedDateTime lendDate) {
+        this.lendDate = lendDate;
+        return this;
+    }
+
+    public Lending book(Book book) {
+        this.book = book;
+        return this;
+    }
+
+    public Lending user(User user) {
+        this.user = user;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -97,12 +101,12 @@ public class Lending implements Serializable {
             return false;
         }
         Lending lending = (Lending) o;
-        return Objects.equals(id, lending.id) && Objects.equals(lendDate, lending.lendDate) && Objects.equals(isActive, lending.isActive) && Objects.equals(book, lending.book) && Objects.equals(user, lending.user);
+        return Objects.equals(id, lending.id) && Objects.equals(lendDate, lending.lendDate) && Objects.equals(book, lending.book) && Objects.equals(user, lending.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lendDate, isActive, book, user);
+        return Objects.hash(id, lendDate, book, user);
     }
 
     @Override
@@ -110,10 +114,10 @@ public class Lending implements Serializable {
         return "{" +
             " id='" + getId() + "'" +
             ", lendDate='" + getLendDate() + "'" +
-            ", isActive='" + isIsActive() + "'" +
             ", book='" + getBook() + "'" +
             ", user='" + getUser() + "'" +
             "}";
     }
 
+    
 }

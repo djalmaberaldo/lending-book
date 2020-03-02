@@ -1,10 +1,12 @@
 package org.dbatista.lendingbook.web.rest;
 
 import org.dbatista.lendingbook.repository.LendingRepository;
+import org.dbatista.lendingbook.service.BookService;
 import org.dbatista.lendingbook.service.LendingService;
 import org.dbatista.lendingbook.web.rest.errors.BadRequestAlertException;
 import org.dbatista.lendingbook.web.rest.util.HeaderUtil;
 import org.dbatista.lendingbook.web.rest.util.PaginationUtil;
+import org.dbatista.lendingbook.service.dto.BookDTO;
 import org.dbatista.lendingbook.service.dto.LendingDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;
@@ -43,6 +45,9 @@ public class LendingResource {
     @Autowired
     private LendingRepository lendingRepository;
 
+    @Autowired
+    private BookService bookService;
+
     /**
      * {@code POST  /lendings} : Create a new lending.
      *
@@ -56,8 +61,12 @@ public class LendingResource {
         if (lendingDTO.getId() != null) {
             throw new BadRequestAlertException("A new lending cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        if (!lendingRepository.existOtherWithBookAndUser(lendingDTO.getBookId(), lendingDTO.getUserId())) {
-            throw new BadRequestAlertException("There is a lending with book and user", ENTITY_NAME, "bookanduser");
+        if (!lendingRepository.existOtherWithBook(lendingDTO.getBookId()).isEmpty()) {
+            throw new BadRequestAlertException("This book has been lent!", ENTITY_NAME, "bookanduser");
+        }
+        Optional<BookDTO> bookDTO = bookService.findOne(lendingDTO.getBookId());
+        if (lendingDTO.getUserId() == bookDTO.get().getOwnerId()) {
+            throw new BadRequestAlertException("You can't lend to yourself", ENTITY_NAME, "bookanduser");
         }
         LendingDTO result = lendingService.save(lendingDTO);
         return ResponseEntity.created(new URI("/api/lendings/" + result.getId()))

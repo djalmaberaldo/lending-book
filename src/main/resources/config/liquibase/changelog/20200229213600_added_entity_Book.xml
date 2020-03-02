@@ -28,6 +28,9 @@
             <column name="year_of_publication" type="integer">
                 <constraints nullable="true" />
             </column>
+                <column name="owner_id" type="bigint">
+                <constraints unique="false" nullable="false"  />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>

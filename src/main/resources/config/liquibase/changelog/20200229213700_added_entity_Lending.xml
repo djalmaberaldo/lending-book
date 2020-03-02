@@ -19,9 +19,6 @@
             <column name="lend_date" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="is_active" type="boolean">
-                <constraints nullable="true" />
-            </column>
             <column name="book_id" type="bigint">
                 <constraints unique="false" nullable="false" />
             </column>

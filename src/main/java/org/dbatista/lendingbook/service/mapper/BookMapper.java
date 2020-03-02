@@ -12,6 +12,9 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface BookMapper extends EntityMapper<BookDTO, Book> {
 
+    @Mapping(source = "owner.id", target = "ownerId")
+    BookDTO toDto(Book book);
+
     @Mapping(target = "lendings", ignore = true)
     Book toEntity(BookDTO bookDTO);
 

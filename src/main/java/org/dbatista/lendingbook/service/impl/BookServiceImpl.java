@@ -1,13 +1,14 @@
 package org.dbatista.lendingbook.service.impl;
 
 import org.dbatista.lendingbook.service.BookService;
+import org.dbatista.lendingbook.service.UserService;
 import org.dbatista.lendingbook.domain.Book;
 import org.dbatista.lendingbook.repository.BookRepository;
 import org.dbatista.lendingbook.service.dto.BookDTO;
 import org.dbatista.lendingbook.service.mapper.BookMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,14 +25,14 @@ public class BookServiceImpl implements BookService {
 
     private final Logger log = LoggerFactory.getLogger(BookServiceImpl.class);
 
-    private final BookRepository bookRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-    private final BookMapper bookMapper;
+    @Autowired
+    private BookMapper bookMapper;
 
-    public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper) {
-        this.bookRepository = bookRepository;
-        this.bookMapper = bookMapper;
-    }
+    @Autowired
+    private UserService userService; 
 
     /**
      * Save a book.
@@ -43,6 +44,7 @@ public class BookServiceImpl implements BookService {
     public BookDTO save(BookDTO bookDTO) {
         log.debug("Request to save Book : {}", bookDTO);
         Book book = bookMapper.toEntity(bookDTO);
+        book.setOwner(userService.getUserWithAuthorities().get());
         book = bookRepository.save(book);
         return bookMapper.toDto(book);
     }

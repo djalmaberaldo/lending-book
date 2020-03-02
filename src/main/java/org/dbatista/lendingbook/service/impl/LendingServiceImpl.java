@@ -47,7 +47,6 @@ public class LendingServiceImpl implements LendingService {
         log.debug("Request to save Lending : {}", lendingDTO);
         Lending lending = lendingMapper.toEntity(lendingDTO);
         lending.setLendDate(ZonedDateTime.now());
-        lending.setIsActive(true);
         lending = lendingRepository.save(lending);
         return lendingMapper.toDto(lending);
     }

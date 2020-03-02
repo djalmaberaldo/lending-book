@@ -18,7 +18,6 @@
             <thead>
                 <tr>
                     <th scope="col"><span>Lend Date</span> </th>
-                    <th scope="col"><span>Is Active</span> </th>
                     <th scope="col"><span>Book</span> </th>
                     <th scope="col"><span>Holder</span> </th>
                     <th scope="col"></th>
@@ -27,7 +26,6 @@
             <tbody>
                 <tr *ngFor="let lending of lendings ;trackBy: trackId">
                     <td>{{ lending.lendDate | date:'dd/MM/yyyy' }}</td>
-                    <td>{{ lending.isActive }}</td>
                     <td>
                         <div *ngIf="lending.bookId">
                           {{ lending.bookTitle }}
@@ -47,6 +45,10 @@
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
+                            <button [disabled]="lending.isActive" type="submit" (click)="delete(lending)"
+                                 class="btn btn-danger btn-sm">
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
                         </div>
                     </td>
                 </tr>

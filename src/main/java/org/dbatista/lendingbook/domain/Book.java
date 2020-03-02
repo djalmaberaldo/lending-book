@@ -35,6 +35,10 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "book")
     private Set<Lending> lendings = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User owner;
+
     public Long getId() {
         return this.id;
     }
@@ -83,6 +87,14 @@ public class Book implements Serializable {
         this.lendings = lendings;
     }
 
+    public User getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     public Book id(Long id) {
         this.id = id;
         return this;
@@ -113,6 +125,11 @@ public class Book implements Serializable {
         return this;
     }
 
+    public Book owner(User owner) {
+        this.owner = owner;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -121,12 +138,12 @@ public class Book implements Serializable {
             return false;
         }
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(description, book.description) && Objects.equals(author, book.author) && Objects.equals(yearOfPublication, book.yearOfPublication) && Objects.equals(lendings, book.lendings);
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(description, book.description) && Objects.equals(author, book.author) && Objects.equals(yearOfPublication, book.yearOfPublication) && Objects.equals(lendings, book.lendings) && Objects.equals(owner, book.owner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, author, yearOfPublication, lendings);
+        return Objects.hash(id, title, description, author, yearOfPublication, lendings, owner);
     }
 
     @Override
@@ -138,8 +155,8 @@ public class Book implements Serializable {
             ", author='" + getAuthor() + "'" +
             ", yearOfPublication='" + getYearOfPublication() + "'" +
             ", lendings='" + getLendings() + "'" +
+            ", owner='" + getOwner() + "'" +
             "}";
     }
-
 
 }
