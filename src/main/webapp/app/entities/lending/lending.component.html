@@ -3,7 +3,6 @@
         <span>Lendings</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lending" [routerLink]="['/lending/new']">
-            <fa-icon icon="plus"></fa-icon>
             <span>
             Create a new Lending
             </span>
@@ -47,13 +46,11 @@
                             <button type="submit"
                                     [routerLink]="['/lending', lending.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button [disabled]="lending.isActive" type="submit" (click)="delete(lending)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>

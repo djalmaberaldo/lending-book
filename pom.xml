@@ -122,6 +122,11 @@
             <artifactId>mysql-socket-factory</artifactId>
             <version>1.0.15</version>
         </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.23.1-GA</version>
+        </dependency>
 
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
@@ -217,6 +222,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
@@ -366,6 +372,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <configuration>
+                    <deploy.projectId>lending-book</deploy.projectId>
+                    <deploy.version>2</deploy.version>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -1091,6 +1106,12 @@
                     </plugins>
                 </pluginManagement>
             </build>
+        </profile>
+        <profile>
+            <id>prod-gae</id>
+            <properties>
+                <spring.profiles.active>prod${profile.swagger}${profile.no-liquibase},prod-gae</spring.profiles.active>
+            </properties>
         </profile>
         <!-- jhipster-needle-maven-add-profile -->
     </profiles>

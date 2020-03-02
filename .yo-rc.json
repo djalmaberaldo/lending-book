@@ -27,6 +27,14 @@
         "testFrameworks": [],
         "jhiPrefix": "jhi",
         "otherModules": [],
-        "enableTranslation": false
+        "enableTranslation": false,
+        "gcpProjectId": "lending-book",
+        "gaeServiceName": "default",
+        "gaeLocation": "asia-east2",
+        "gaeInstanceClass": "F4",
+        "gaeScalingType": "automatic",
+        "gaeMinInstances": "0",
+        "gaeMaxInstances": "0",
+        "gaeCloudSQLInstanceNeeded": "N"
     }
 }

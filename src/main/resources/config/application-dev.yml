@@ -37,8 +37,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://google/lendingbook?cloudSqlInstance=lending-book:us-central1:lending-book-db&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false
-        username: root
-        password: jpjgml
+        username: producao
+        password: admin123        
         hikari:
             auto-commit: false
             data-source-properties:
@@ -46,6 +46,10 @@ spring:
                 prepStmtCacheSize: 250
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
+                socketFactory: com.google.cloud.sql.mysql.SocketFactory
+                cloudSqlInstance: lending-book:us-central1:lending-book-db
+                useSSL: false
+
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
