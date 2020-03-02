@@ -17,7 +17,6 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col"  ><span>ID</span> </th>
                     <th scope="col"  ><span>Lend Date</span> </th>
                     <th scope="col"  ><span>Is Active</span> </th>
                     <th scope="col"  ><span>Book</span> </th>
@@ -27,7 +26,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let lending of lendings ;trackBy: trackId">
-                    <td><a [routerLink]="['/lending', lending.id, 'view']">{{ lending.id }}</a></td>
                     <td>{{ lending.lendDate | date:'dd/MM/yyyy' }}</td>
                     <td>{{ lending.isActive }}</td>
                     <td>
