@@ -24,6 +24,7 @@ export class BookComponent implements OnInit, OnDestroy {
     predicate!: string;
     ascending!: boolean;
     ngbPaginationPage = 1;
+    serviceDone = false;
 
     constructor(
         protected bookService: BookService,
@@ -95,6 +96,7 @@ export class BookComponent implements OnInit, OnDestroy {
             }
         });
         this.books = data || [];
+        this.serviceDone = true;
     }
 
     protected onError(): void {

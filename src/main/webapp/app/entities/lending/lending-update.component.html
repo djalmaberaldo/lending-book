@@ -10,12 +10,12 @@
                     <div>{{currentLending.lendDate | date:'dd/MM/yyyy'}}</div>
                 </div>
 
-                <div class="form-group">
+                <div *ngIf="currentLending.id != null" class="form-group">
                     <label class="form-control-label" for="field_isActive">Is Active</label>
                     <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
                            formControlName="isActive"/>
                 </div>
-
+    
                 <div  class="form-group">
                     <label class="form-control-label" for="field_book"><b>Book</b></label>
                     <select *ngIf="currentLending.id === null" class="form-control" id="field_book" name="book" formControlName="bookId">

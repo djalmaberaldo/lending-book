@@ -116,7 +116,8 @@ export class LendingUpdateComponent implements OnInit {
     save(): void {
         this.isSaving = true;
         const lending = this.createFromForm();
-        if (lending.id !== undefined) {
+        console.log(lending);
+        if (lending.id !== null) {
             this.subscribeToSaveResponse(this.lendingService.update(lending));
         } else {
             this.subscribeToSaveResponse(this.lendingService.create(lending));
@@ -135,7 +136,7 @@ export class LendingUpdateComponent implements OnInit {
     }
 
     protected subscribeToSaveResponse(result: Observable<HttpResponse<ILending>>): void {
-        result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+        result.subscribe(() => this.onSaveSuccess(), x => this.onSaveError(x));
     }
 
     protected onSaveSuccess(): void {
@@ -143,8 +144,9 @@ export class LendingUpdateComponent implements OnInit {
         this.previousState();
     }
 
-    protected onSaveError(): void {
+    protected onSaveError(x): void {
         this.isSaving = false;
+        alert(x.error.title);
     }
 
     trackById(index: number, item: IBook): any {

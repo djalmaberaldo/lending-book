@@ -24,6 +24,7 @@ export class LendingComponent implements OnInit, OnDestroy {
     predicate!: string;
     ascending!: boolean;
     ngbPaginationPage = 1;
+    serviceDone = false;
 
     constructor(
         protected lendingService: LendingService,
@@ -95,6 +96,7 @@ export class LendingComponent implements OnInit, OnDestroy {
             }
         });
         this.lendings = data || [];
+        this.serviceDone = true;
     }
 
     protected onError(): void {

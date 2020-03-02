@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span>Lendings</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lending" [routerLink]="['/lending/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lending" [disabled]="!serviceDone" [routerLink]="['/lending/new']">
             <span>
             Create a new Lending
             </span>
@@ -17,10 +17,10 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col"  ><span>Lend Date</span> </th>
-                    <th scope="col"  ><span>Is Active</span> </th>
-                    <th scope="col"  ><span>Book</span> </th>
-                    <th scope="col"  ><span>Posession</span> </th>
+                    <th scope="col"><span>Lend Date</span> </th>
+                    <th scope="col"><span>Is Active</span> </th>
+                    <th scope="col"><span>Book</span> </th>
+                    <th scope="col"><span>Holder</span> </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                     <td class="text-right">
                         <div class="btn-group">
 
-                            <button type="submit"
+                            <button [disabled]="!lending.isActive" type="submit"
                                     [routerLink]="['/lending', lending.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <span class="d-none d-md-inline">Edit</span>

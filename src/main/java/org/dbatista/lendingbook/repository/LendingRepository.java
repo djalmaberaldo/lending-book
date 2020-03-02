@@ -19,4 +19,12 @@ public interface LendingRepository extends JpaRepository<Lending, Long> {
     + "LEFT JOIN lending.book book "
     + "WHERE lending.user.id = ?1")
     Page<Book> findAllBooksWithUser(Long id, Pageable pageable);
+
+    @Query("SELECT CASE WHEN COUNT(Lending) > 0 THEN 'true' ELSE 'false' END "
+        + "FROM Lending lending "
+        + "WHERE lending.book.id = ?1 "
+        + "AND lending.user.id != ?2 "
+        + "AND  lending.isActive=true")
+    boolean existOtherWithBookAndUser(Long bookId, Long userId);
+
 }

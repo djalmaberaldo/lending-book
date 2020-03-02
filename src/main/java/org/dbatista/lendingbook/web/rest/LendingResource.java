@@ -1,5 +1,6 @@
 package org.dbatista.lendingbook.web.rest;
 
+import org.dbatista.lendingbook.repository.LendingRepository;
 import org.dbatista.lendingbook.service.LendingService;
 import org.dbatista.lendingbook.web.rest.errors.BadRequestAlertException;
 import org.dbatista.lendingbook.web.rest.util.HeaderUtil;
@@ -9,6 +10,7 @@ import org.dbatista.lendingbook.service.dto.LendingDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,11 +37,11 @@ public class LendingResource {
     @Value("LendingBookApp")
     private String applicationName;
 
-    private final LendingService lendingService;
+    @Autowired
+    private LendingService lendingService;
 
-    public LendingResource(LendingService lendingService) {
-        this.lendingService = lendingService;
-    }
+    @Autowired
+    private LendingRepository lendingRepository;
 
     /**
      * {@code POST  /lendings} : Create a new lending.
@@ -53,6 +55,9 @@ public class LendingResource {
         log.debug("REST request to save Lending : {}", lendingDTO);
         if (lendingDTO.getId() != null) {
             throw new BadRequestAlertException("A new lending cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (!lendingRepository.existOtherWithBookAndUser(lendingDTO.getBookId(), lendingDTO.getUserId())) {
+            throw new BadRequestAlertException("There is a lending with book and user", ENTITY_NAME, "bookanduser");
         }
         LendingDTO result = lendingService.save(lendingDTO);
         return ResponseEntity.created(new URI("/api/lendings/" + result.getId()))

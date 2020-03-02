@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span>Books</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-book" [routerLink]="['/book/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-book" [disabled]="!serviceDone" [routerLink]="['/book/new']">
             <span>
             Create a new Book
             </span>
@@ -16,7 +16,6 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col"  ><span>ID</span> </th>
                     <th scope="col"  ><span>Title</span> </th>
                     <th scope="col"  ><span>Description</span> </th>
                     <th scope="col"  ><span>Author</span> </th>
@@ -26,7 +25,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let book of books ;trackBy: trackId">
-                    <td><a [routerLink]="['/book', book.id, 'view']">{{ book.id }}</a></td>
                     <td>{{ book.title }}</td>
                     <td>{{ book.description }}</td>
                     <td>{{ book.author }}</td>

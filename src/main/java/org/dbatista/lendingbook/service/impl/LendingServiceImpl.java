@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 /**
@@ -45,6 +46,8 @@ public class LendingServiceImpl implements LendingService {
     public LendingDTO save(LendingDTO lendingDTO) {
         log.debug("Request to save Lending : {}", lendingDTO);
         Lending lending = lendingMapper.toEntity(lendingDTO);
+        lending.setLendDate(ZonedDateTime.now());
+        lending.setIsActive(true);
         lending = lendingRepository.save(lending);
         return lendingMapper.toDto(lending);
     }
