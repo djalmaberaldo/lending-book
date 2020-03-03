@@ -4,7 +4,7 @@
 
     <groupId>org.dbatista.lendingbook</groupId>
     <artifactId>lendingbook</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Lendingbook</name>
 
@@ -379,7 +379,7 @@
                 <version>2.2.0</version>
                 <configuration>
                     <deploy.projectId>lending-book</deploy.projectId>
-                    <deploy.version>2</deploy.version>
+                    <deploy.version>3</deploy.version>
                 </configuration>
             </plugin>
             <plugin>
